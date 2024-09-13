@@ -1,7 +1,10 @@
 import Image from "next/image";
+import { Product } from "./components/productDash";
 
 export default function Home() {
   return (
-    <div>Hi</div>
+    <div>
+      <Product />
+    </div>
   );
 }
