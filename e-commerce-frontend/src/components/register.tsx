@@ -49,7 +49,7 @@ export function InputForm() {
 
 
   return (
-   <div className="flex flex-col gap-4 items-center mt-[100px]">
+   <div className="flex flex-col gap-4 items-center pt-[100px]">
         <div className="flex flex-col gap-6">
             <p className="text-tersiaryBlack font-semibold text-2xl self-center">Бүртгүүлэх</p>
             <div className="flex flex-col gap-4 w-[334px]">
