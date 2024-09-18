@@ -1,13 +1,9 @@
-
-
-import { Product } from "@/components/productDash";
-
-
+import { InputForm } from "@/components/register";
 
 export default function Home() {
   return (
-    <div>Hi
-      <Product />
+    <div>
+      <InputForm/>
     </div>
   )
 
