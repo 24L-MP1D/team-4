@@ -25,13 +25,50 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={` ${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <div className="max-w-[1440px] m-auto">
-          {children}
-        </div>
+  <body>
+  
+  {/* added header and footer */}
+      <header 
+        style={{
+          backgroundColor: "#111111",
 
+          color: "white",
+          padding: "1rem",
+      }}>ec
+            <div className="flex space-x-5 align-middle justify-evenly">
+            <div>Logo ECOMMORCE</div>
+            <div>Ангилал</div>
+            <div>Search bar</div>
+            <div>icon heart</div> 
+            <div>icon cart</div> 
+            <div>Бүргүүлэх</div> 
+            <div>Нэвтрэх</div>             
+            <p>2024 Ecommerce MN</p>
+          </div>   
+      </header>
+
+        {children}
+
+      <footer
+        style={{
+          backgroundColor: "#111111",
+          top: "798px",
+          gap: "43px",
+          width: "100%",
+          height: "282x",
+          padding: "64px 220px",
+          color: "white",
+        }}>
+          <div className="flex space-x-5 align-middle justify-evenly">
+            <div>Logo</div>
+            <div>icon (976)7007-1234</div>
+            <div>icon contact@ecommerce.mn</div>
+            <br/> 
+        <p>2024 Ecommerce MN</p>
+          </div>     
+      </footer>
+  {/* close header and footer */}
+  
       </body>
     </html>
   );
