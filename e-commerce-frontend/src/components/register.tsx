@@ -35,33 +35,32 @@ export function Register() {
    <div className="flex flex-col gap-4 items-center pt-[100px]">
         <div className="flex flex-col gap-6">
             <p className="text-tersiaryBlack font-semibold text-2xl self-center">Бүртгүүлэх</p>
-            <div className="flex flex-col gap-4 w-[334px]">
+            <div >
                     <Form {...form}  >
                       
                         <FormField
                         control={form.control}
                         name="username"
                         render={({ field }) => (
-                        <FormItem>
+                        <FormItem className="flex flex-col gap-4 w-[334px]">
                             <FormControl>
                                 <Input placeholder="Нэр" {...field} className="rounded-[18px]"/>
                             </FormControl>
                             <FormControl>
-                                <div>
+                                <div className="flex flex-col gap-2">
                                   <Input placeholder="Имэйл хаяг" {...field} className="rounded-[18px]"/>
                                   <div className="text-primaryRed text-xs font-normal">Зөв имэйл хаяг оруулна уу</div> 
-                                  </div>                  
+                                </div>                  
                             </FormControl>
                             <FormControl>
-                                <div>
-                                <Input placeholder="Нууц үг" {...field} className="rounded-[18px]"/>   
-                                </div>
-                                   
+                                <div >
+                                  <Input placeholder="Нууц үг" {...field} className="rounded-[18px]"/>   
+                                </div>            
                             </FormControl>
                             <FormControl>
-                                <div>
-                                <Input placeholder="Нууц үг давтах" {...field} className="rounded-[18px]"/>
-                                <div className="text-primaryRed text-xs font-normal">Нууц үг ижил биш байна</div>
+                                <div className="flex flex-col gap-2">
+                                  <Input placeholder="Нууц үг давтах" {...field} className="rounded-[18px]"/>
+                                  <div className="text-primaryRed text-xs font-normal">Нууц үг ижил биш байна</div>
                                 </div>
                             </FormControl>             
                             <FormMessage />

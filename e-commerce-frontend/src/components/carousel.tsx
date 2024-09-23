@@ -46,14 +46,14 @@ export function ImageSlider () {
           ]}>
             <CarouselContent>
                 <CarouselItem>
-                    <Image src="/hoodie.webp" alt="TestImage" width={1040} height={446} className="w-full rounded-[16px] h-full aspect-video relative"/> 
+                    <Image src="/hoodie.webp" alt="TestImage" width={1040} height={446} className="w-full rounded-[16px] h-full aspect-video relative object-cover"/> 
                     <div className="absolute left-8 bottom-8 ">
                       <div className="font-normal text-lg text-black">Wildflower Hoodie</div>
                       <div className="font-bold text-4xl text-black">120’000₮</div>
                     </div>
                 </CarouselItem>
                 <CarouselItem className="rounded-xl">
-                    <Image src="/hoodiee.jpeg" alt="TestImage" width={1040} height={446} className="w-full h-full rounded-[16px] aspect-video relative"/> 
+                    <Image src="/hoodiee.jpeg" alt="TestImage" width={1040} height={446} className="w-full h-full rounded-[16px] aspect-video relative object-cover"/> 
                     <div className="absolute left-8 bottom-8 ">
                       <div className="font-normal text-lg text-black">Wildflower Hoodie</div>
                       <div className="font-bold text-4xl text-black">120’000₮</div>
