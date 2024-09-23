@@ -20,25 +20,8 @@ const FormSchema = z.object({
   }),
 })
 
-const placeholder = [
-    {name: "Нэр"},
-    {name: "Имэйл хаяг",
-    warning: "Зөв имэйл хаяг оруулна уу"
-    },
-    {name: "Нууц үг"},
-    {name: "Нууц үг давтах ",
-    warning:"Нууц үг ижил биш байна"
-    }
-]
 
-const requirements =[
-    {name: "Том үсэг орсон байх"},
-    {name: "Жижиг үсэг орсон байх"},
-    {name: "Тоо орсон байх"},
-    {name: "Тэмдэгт орсон байх"}
-]
-
-export function InputForm() {
+export function Register() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -54,29 +37,48 @@ export function InputForm() {
             <p className="text-tersiaryBlack font-semibold text-2xl self-center">Бүртгүүлэх</p>
             <div className="flex flex-col gap-4 w-[334px]">
                     <Form {...form}  >
-                        {placeholder.map((place) => 
+                      
                         <FormField
                         control={form.control}
                         name="username"
                         render={({ field }) => (
                         <FormItem>
                             <FormControl>
-                            <Input placeholder={place.name} {...field} className="rounded-[18px]"/>
+                                <Input placeholder="Нэр" {...field} className="rounded-[18px]"/>
                             </FormControl>
-                            <FormDescription className="text-primaryRed text-xs font-normal"> 
-                            {place.warning}
-                            </FormDescription>
+                            <FormControl>
+                                <div>
+                                  <Input placeholder="Имэйл хаяг" {...field} className="rounded-[18px]"/>
+                                  <div className="text-primaryRed text-xs font-normal">Зөв имэйл хаяг оруулна уу</div> 
+                                  </div>                  
+                            </FormControl>
+                            <FormControl>
+                                <div>
+                                <Input placeholder="Нууц үг" {...field} className="rounded-[18px]"/>   
+                                </div>
+                                   
+                            </FormControl>
+                            <FormControl>
+                                <div>
+                                <Input placeholder="Нууц үг давтах" {...field} className="rounded-[18px]"/>
+                                <div className="text-primaryRed text-xs font-normal">Нууц үг ижил биш байна</div>
+                                </div>
+                            </FormControl>             
                             <FormMessage />
                         </FormItem>
+                        
                         )}
                     />
-                        ) }
+            
                     </Form>
             </div>
             <ul>
-                {requirements.map ((req)=> 
-                <li className="text-primaryGray font-normal text-xs list-disc ml-4">{req.name}</li>
-                )}
+              
+                <li className="text-primaryGray font-normal text-xs list-disc ml-4">Том үсэг орсон байх</li>
+                <li className="text-primaryGray font-normal text-xs list-disc ml-4">Жижиг үсэг орсон байх</li>
+                <li className="text-primaryGray font-normal text-xs list-disc ml-4">Тоо орсон байх</li>
+                <li className="text-primaryGray font-normal text-xs list-disc ml-4">Тэмдэгт орсон байх</li>
+                
             </ul> 
             </div>
             <div className="flex flex-col gap-12 w-[334px]">

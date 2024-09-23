@@ -5,19 +5,21 @@ import {
     DialogDescription,
     DialogHeader,
     DialogTitle,
-    DialogTrigger,
   } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
+import Image from "next/image"
 
 
-export function Successfullysaved () {
+
+export function Successfullysaved ({saved}: {saved:any}) {
+    console.log (saved)
    return (
-    <Dialog >
-        <DialogTrigger>Open</DialogTrigger>
+    <Dialog open={saved=="successful"}>
         <DialogContent className="bg-white rounded-xl max-w-[551px] p-6 ">
             <DialogHeader>
             <DialogTitle className="pb-8 text-iconPrimary font-bold text-xl"> 
+             <Image src="/saved.png" width={300} height={300} alt="Successfully saved"/>
             </DialogTitle>
             
             <DialogDescription className="flex flex-col gap-[121px]">
