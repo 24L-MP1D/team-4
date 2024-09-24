@@ -31,15 +31,16 @@ export function UserCardIndex({ index }: { index: Number }) {
               index == 6 || index == 7 ? "min-h-[692px]" : "h-full"
             } hover:duration-1000`}
           />
-          <Button onClick={() => setFilled(!filled)}>
+          <button onClick={() => setFilled(!filled)} className="absolute top-4 right-4">
             <Heart
-              strokeWidth={2}
-              className={`absolute top-4 right-4 ${
+              strokeWidth={1}
+              className={` ${
                 index == 6 || index == 7 ? "hidden" : "block"
               }`}
-              fill={filled === true ? "red" : "white"}
+              fill={filled === true ? "red" : "none"}
+              stroke="black"
             />
-          </Button>
+          </button>
         </CardContent>
       </Card>
       <div className="flex flex-col gap-1 ">
