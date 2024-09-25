@@ -1,7 +1,6 @@
 "use client";
 import { Heart, Star } from "lucide-react";
 import { Button } from "./ui/button";
-import { Input } from "./ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { TableBody, TableCell } from "./ui/table";
 import { useState } from "react";
@@ -15,8 +14,13 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "./ui/textarea";
 
+export function CreatComment(){
+  // const [comment, SetComment] = useState();
+}
+
 export function ProductDetail({ open }: { open: boolean }) {
   const [visible, SetVisible] = useState(false);
+  const [comment, SetComment] = useState("");
   return (
     <div className="max-w-[1040px] mx-auto items-center mt-[52px] flex gap-5">
       <div className="flex gap-5">
@@ -216,7 +220,7 @@ export function ProductDetail({ open }: { open: boolean }) {
                   </div>
                   <div className="flex flex-col gap-2">
                     <p className="text-sm font-medium">Сэтгэгдэл үлдээх:</p>
-                    <Textarea placeholder="Энд бичнэ үү..."/>
+                    <Textarea placeholder="Энд бичнэ үү..." value={comment} onChange={(e)=> SetComment(e.target.value)}/>
                   </div>
                   <Button className="bg-primaryBlue rounded-3xl w-32 font-semibold py-2 px-9 hover:bg-blue-800">
                     Үнэлэх
