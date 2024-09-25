@@ -45,6 +45,7 @@ export function ProductDetail() {
     },
   });
   const [visible, SetVisible] = useState(false);
+  const [comment, SetComment] = useState("");
   const [data, setData] = useState<Products[]>([]);
   const [selected, SetSelected] = useState("");
   const [selectImagePath, SetSelectImagePath] = useState("");
