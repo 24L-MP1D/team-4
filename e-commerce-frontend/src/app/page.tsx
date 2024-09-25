@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 "use client"
 
 import { BuyStepThree } from "@/components/buyStepThree";
@@ -6,6 +7,8 @@ import { ClientHeader } from "@/components/headerClient";
 import { ProductDetail } from "@/components/clientProductDetail"
 
 import { Header } from "@/components/header";
+import { ProductDetail } from "@/components/clientProductDetail";
+
 
 export default function Home() {
   return (
