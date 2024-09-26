@@ -202,6 +202,7 @@ export function ProductDetail() {
                   <Star className="size-5 fill-yellow-400 text-yellow-400" />
                 </div>
               </div>
+<<<<<<< HEAD
               <div className="flex flex-col gap-2">
                 <p className="text-sm font-medium">Сэтгэгдэл үлдээх:</p>
                 <Textarea placeholder="Энд бичнэ үү..." id="title"
@@ -212,6 +213,102 @@ export function ProductDetail() {
                 Үнэлэх
               </Button>
             </div>
+=======
+              <PopoverContent className="w-full p-3">
+                <TableBody className="flex flex-col gap-6">
+                  <ScrollArea className="h-72 w-[320px] rounded-md border">
+                    <div className="flex flex-col">
+                      <TableCell>
+                        <div className="flex gap-1">
+                          <p className="text-sm font-medium">Saraa</p>
+                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                        </div>
+                        <div className="text-nowrap">
+                          Ваав материал ёстой гоё байна 😍
+                        </div>
+                        <Separator className="my-2" />
+                      </TableCell>
+                      <TableCell>
+                        <div className="flex gap-1">
+                          <p className="text-sm font-medium">Saraa</p>
+                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                        </div>
+                        <div className="text-nowrap">
+                          Ваав материал ёстой гоё байна 😍
+                        </div>
+                        <Separator className="my-2" />
+                      </TableCell>
+                      <TableCell>
+                        <div className="flex gap-1">
+                          <p className="text-sm font-medium">Saraa</p>
+                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                        </div>
+                        <div className="text-nowrap">
+                          Ваав материал ёстой гоё байна 😍
+                        </div>
+                        <Separator className="my-2" />
+                      </TableCell>
+                      <TableCell>
+                        <div className="flex gap-1">
+                          <p className="text-sm font-medium">Saraa</p>
+                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                        </div>
+                        <div className="text-nowrap">
+                          Ваав материал ёстой гоё байна 😍
+                        </div>
+                        <Separator className="my-2" />
+                      </TableCell>
+                    </div>
+                  </ScrollArea>
+                  <div className="bg-[#F4F4F5] flex flex-col gap-6 p-6">
+                    <div className="flex flex-col gap-2">
+                      <p className="text-sm font-medium">Одоор үнэлэх:</p>
+                      <div className="flex">
+                        <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                        <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                        <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                        <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                        <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                      </div>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <p className="text-sm font-medium">Сэтгэгдэл үлдээх:</p>
+                      <Textarea
+                        name="title"
+                        placeholder="Энд бичнэ үү..."
+                        id="setgegdel"
+                        value={formik.values.title}
+                        onChange={formik.handleChange}
+                      />
+                      {formik.errors.title ? "Үнэлгээ өгнө үү" : null}
+                    </div>
+                    <Button
+                      className="bg-primaryBlue rounded-3xl w-32 font-semibold py-2 px-9 hover:bg-blue-800 disabled:opacity-30 disabled:cursor-not-allowed"
+                      disabled={!isValid}
+                    >
+                      Үнэлэх
+                    </Button>
+                  </div>
+                </TableBody>
+              </PopoverContent>
+            </Popover>
+>>>>>>> d3b0300 (Formik onchange update)
           </div>
         </div>
       </div>
