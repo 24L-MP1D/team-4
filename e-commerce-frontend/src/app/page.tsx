@@ -1,3 +1,4 @@
+
 import { ProductDetail } from "@/components/clientProductDetail";
 
 export default function Home() {
