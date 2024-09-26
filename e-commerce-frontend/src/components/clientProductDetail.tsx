@@ -267,7 +267,7 @@ export function ProductDetail({ open }: { open: boolean }) {
                         value={formik.values.title}
                         onChange={formik.handleChange}
                       />
-                      {formik.errors.title ? "Unelgee ogno uu" : null}
+                      {formik.errors.title ? "Үнэлгээ өгнө үү" : null}
                     </div>
                     <Button
                       className="bg-primaryBlue rounded-3xl w-32 font-semibold py-2 px-9 hover:bg-blue-800 disabled:opacity-30 disabled:cursor-not-allowed"
