@@ -1,6 +1,7 @@
-import { Calendar, Download } from "lucide-react";
+import { Calendar, ChevronRight, Download } from "lucide-react";
 import { Header } from "./header";
 import { SideBAr } from "./sidebar";
+import { TableBody, TableCell, TableRow } from "./ui/table";
 
 export function Income() {
   return (
@@ -38,9 +39,29 @@ export function Income() {
           <div className="bg-white rounded-xl w-[724px] mt-[10px]">
             <div className="flex p-5 justify-between">
               <div className="text-[#3F4145] text-sm">Захиалгын ID дугаар</div>
-              <div>Үйлчлүүлэгч</div>
-              <div>Огноо</div>
+              <div>Захиалагч</div>
               <div>Төлбөр</div>
+              <div>Огноо</div>
+            </div>
+            <div>
+              {MOCK_DATA.map((invoice) => (
+                <TableRow key={invoice.id} className="flex p-5 justify-between">
+                  <div className="font-semibold">{invoice.id}</div>
+                  <div>{invoice.user}</div>
+                  <div>{invoice.payment}</div>
+                  <div>{invoice.totalAmount}</div>
+                </TableRow>
+              ))}
+            </div>
+            <div>
+              {MOCK_DATA.map((invoice) => (
+                <TableRow key={invoice.id} className="flex p-5 justify-between">
+                  <div className="font-semibold">{invoice.id}</div>
+                  <div>{invoice.user}</div>
+                  <div>{invoice.payment}</div>
+                  <div>{invoice.totalAmount}</div>
+                </TableRow>
+              ))}
             </div>
           </div>
         </div>
@@ -48,3 +69,12 @@ export function Income() {
     </div>
   );
 }
+
+const MOCK_DATA = [
+  {
+    id: "#12345678",
+    user: "Zoloo soko",
+    totalAmount: "2023-01-09",
+    payment: "12,000₮",
+  },
+];
