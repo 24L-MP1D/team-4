@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 export function SideBAr() {
   const router = useRouter();
   return (
-    <div className="bg-[#FFFFFF] w-[250px] flex flex-col gap-1 py-10">
+    <div className="bg-[#FFFFFF] w-[250px] flex flex-col gap-1 py-5">
       <button
         onClick={() => router.push("/auth/dashboard")}
         className="flex gap-4 text-headerBlack text-base hover:bg-gray-300 p-3"
