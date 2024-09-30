@@ -15,6 +15,7 @@ import { Separator } from "@/components/ui/separator";
 import { Textarea } from "./ui/textarea";
 import { title } from "process";
 import { useFormik, FormikErrors } from "formik";
+import { Header } from "./header";
 
 interface FormValues {
   title: string;
