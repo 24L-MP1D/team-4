@@ -1,5 +1,5 @@
 "use client";
-import { Heart, Star } from "lucide-react";
+import { BluetoothConnectedIcon, Edit, Ellipsis, Heart, Key, Star, Trash2 } from "lucide-react";
 import { Button } from "./ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { TableBody, TableCell } from "./ui/table";
@@ -16,14 +16,29 @@ import { Textarea } from "./ui/textarea";
 import { title } from "process";
 import { useFormik, FormikErrors } from "formik";
 import { Header } from "./header";
+import { tree } from "next/dist/build/templates/app-page";
 
 interface FormValues {
   title: string;
 }
 
-//  function CreatComment(){
-
-// }
+const buttons = [
+  {
+    name: "S",
+  },
+  {
+    name: "M"
+  },
+  {
+    name: "L"
+  },
+  {
+    name: "XL"
+  },
+  {
+    name: "2XL"
+  }
+]
 function Submit() {
   fetch(`http://localhost:4000/productDetail`, {
     method: "POST",
@@ -39,8 +54,11 @@ function Submit() {
   });
 }
 
+
+
 export function ProductDetail({ open }: { open: boolean }) {
   const [visible, SetVisible] = useState(false);
+  const [selected, SetSelected] = useState("");
   const formik = useFormik({
     initialValues: { title: "" },
     onSubmit: (values) => {
@@ -106,41 +124,11 @@ export function ProductDetail({ open }: { open: boolean }) {
             <div className="flex flex-col gap-2">
               <p className="text-sm font-normal">Хэмжээний заавар</p>
               <div className="flex gap-1">
-                <Button
-                  variant={"outline"}
-                  className="w-8 h-8 rounded-full"
-                  type="button"
-                >
-                  S
-                </Button>
-                <Button
-                  variant={"outline"}
-                  className="w-8 h-8 text-black rounded-full"
-                  type="button"
-                >
-                  M
-                </Button>
-                <Button
-                  variant={"outline"}
-                  className="w-8 h-8 text-black rounded-full"
-                  type="button"
-                >
-                  L
-                </Button>
-                <Button
-                  variant={"outline"}
-                  className="w-8 h-8 text-black rounded-full"
-                  type="button"
-                >
-                  XL
-                </Button>
-                <Button
-                  variant={"outline"}
-                  className="w-8 h-8 text-black rounded-full"
-                  type="button"
-                >
-                  2XL
-                </Button>
+                {buttons.map((button) => (
+                  <Button variant={"outline"} className={`rounded-full text-xs w-8 h-8 text-black ${button.name === selected ? "bg-primaryBlack text-white" : ""}`} onClick={() => SetSelected(button.name)}>
+                    {button.name}
+                  </Button>
+                ))}
               </div>
             </div>
             <div className="flex gap-1 items-center">
@@ -187,58 +175,27 @@ export function ProductDetail({ open }: { open: boolean }) {
               </div>
               <PopoverContent className="w-full p-3">
                 <TableBody className="flex flex-col gap-6">
-                  <ScrollArea className="h-72 w-[300px] rounded-md border">
+                  <ScrollArea className="w-[300px] rounded-md border">
                     <div className="flex flex-col">
                       <TableCell>
-                        <div className="flex gap-1">
-                          <p className="text-sm font-medium">Saraa</p>
-                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
-                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
-                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
-                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
-                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
-                        </div>
-                        <div className="text-nowrap">
-                          Ваав материал ёстой гоё байна 😍
-                        </div>
-                        <Separator className="my-2" />
-                      </TableCell>
-                      <TableCell>
-                        <div className="flex gap-1">
-                          <p className="text-sm font-medium">Saraa</p>
-                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
-                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
-                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
-                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
-                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
-                        </div>
-                        <div className="text-nowrap">
-                          Ваав материал ёстой гоё байна 😍
-                        </div>
-                        <Separator className="my-2" />
-                      </TableCell>
-                      <TableCell>
-                        <div className="flex gap-1">
-                          <p className="text-sm font-medium">Saraa</p>
-                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
-                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
-                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
-                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
-                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
-                        </div>
-                        <div className="text-nowrap">
-                          Ваав материал ёстой гоё байна 😍
-                        </div>
-                        <Separator className="my-2" />
-                      </TableCell>
-                      <TableCell>
-                        <div className="flex gap-1">
-                          <p className="text-sm font-medium">Saraa</p>
-                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
-                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
-                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
-                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
-                          <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                        <div className="flex justify-between">
+                          <div className="flex gap-2">
+                            <p className="text-sm font-medium">Saraa</p>
+                            <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                            <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                            <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                            <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                            <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                          </div>
+                          <Popover>
+                            <PopoverTrigger asChild>
+                              <Ellipsis />
+                            </PopoverTrigger>
+                            <PopoverContent className="flex gap-3 w-[100px]">
+                              <Edit className="text-blue-500" />
+                              <Trash2 className="text-red-500" />
+                            </PopoverContent>
+                          </Popover>
                         </div>
                         <div className="text-nowrap">
                           Ваав материал ёстой гоё байна 😍
@@ -264,7 +221,7 @@ export function ProductDetail({ open }: { open: boolean }) {
                         value={formik.values.title} onChange={formik.handleChange}
                       />{formik.errors.title}
                     </div>
-                    <Button className="bg-primaryBlue rounded-3xl w-32 font-semibold py-2 px-9 hover:bg-blue-800" type="submit" onClick={formik.handleSubmit}>
+                    <Button className="bg-primaryBlue rounded-3xl w-32 font-semibold py-2 px-9 hover:bg-blue-800" type="submit" onClick={() => formik.handleSubmit}>
                       Үнэлэх
                     </Button>
                   </div>
