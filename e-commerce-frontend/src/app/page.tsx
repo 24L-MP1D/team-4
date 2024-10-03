@@ -1,6 +1,5 @@
 "use client"
 
-import { BuyStep } from "@/components/buyStep";
 import { BuyStepOne } from "@/components/buyStepOne";
 import { ProductDetail } from "@/components/clientProductDetail"
 
