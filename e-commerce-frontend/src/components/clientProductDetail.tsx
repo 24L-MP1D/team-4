@@ -110,7 +110,7 @@ export function ProductDetail() {
               className="rounded-2xl shadow-2xl "
             />
           </div>
-          <div className="w-[509px] py-[100px] flex-1 flex-col gap-4">
+          <div className="w-[509px] py-[100px] flex-1 flex flex-col gap-4">
             <div className="w-[418px]">
               <div className="flex flex-col gap-2">
                 <Button
@@ -128,7 +128,7 @@ export function ProductDetail() {
                 </p>
               </div>
             </div>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-5">
               <div className="flex flex-col gap-2">
                 <p className="text-sm font-normal">Хэмжээний заавар</p>
                 <div className="flex gap-1">
