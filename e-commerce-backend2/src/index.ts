@@ -1,28 +1,17 @@
 // src/index.ts
-
-import express, {Request, Response} from 'express';
-import connectDB from "../config/db"
 import { productDetail } from './model/productDetailschema';
-const app = express();
-const port = 4000;
-connectDB();
-const cors = require('cors');
-app.use(cors());
-app.use(express.json()); 
-
 import express, { Request, Response, text } from 'express';
 import connectDB from "../config/db"
 import { postProduct } from './model/postproductmodel';
+import { buyStep } from './model/buyStepModel';
 
-
+connectDB();
 const app = express();
 const port = 4000;
 
 const cors = require('cors')
 app.use(cors())
 app.use(express.json());
-
-connectDB()
 
 
 app.get('/', (req, res) => {
@@ -56,7 +45,19 @@ app.post('/postProducts', async (req: Request, res: Response) => {
   }
 })
 
+app.post('/buySteoTwo', async(req:Request, res: Response) =>{
+  try{
+    const{values} = req.body;
+    const buyStepTwo = await buyStep.create({values})
+    res.sendStatus(200);
+  } catch(error){
+    console.error(error)
+    res.sendStatus(400);
+  }
+})
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
+
+
