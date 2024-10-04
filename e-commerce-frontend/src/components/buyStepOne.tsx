@@ -1,8 +1,7 @@
 "use client";
 
-import { Trash, Trash2, Trash2Icon } from "lucide-react";
+import { Trash2Icon } from "lucide-react";
 import { Button } from "./ui/button";
-import { Separator } from "./ui/separator";
 import { useState } from "react";
 
 export function BuyStepOne() {
@@ -17,9 +16,8 @@ export function BuyStepOne() {
     <div className="flex flex-col justify-center gap-6 mt-10">
       <div className="w-[256px] flex gap-20 items-center pl-[500px]">
         <Button variant={"outline"} className="rounded-full size-10">1</Button>
-      
+        <div></div>
         <Button variant={"outline"} className="rounded-full size-10">2</Button>
-        
         <Button variant={"outline"} className="rounded-full size-10">3</Button>
       </div>
       <div className="w-[650px] flex flex-col self-center bg-slate-500 rounded-2xl">
@@ -28,7 +26,7 @@ export function BuyStepOne() {
             <span className="text-xl font-bold">1. Сагс</span>
             <span className="text-gray-400">(4)</span>
           </div>
-          <div className="flex gap-6 p-4 bg-[#ECEDF0] ">
+          <div className="flex gap-6 p-4 bg-[#ECEDF0] rounded-2xl">
             <div className="bg-yellow-300 w-[100px] h-[100px] rounded-xl shadow-2xl"></div>
             <div className="flex flex-col gap-2 w-[354px]">
               <div>
@@ -49,7 +47,7 @@ export function BuyStepOne() {
               <Trash2Icon className="size-6" />
             </div>
           </div>
-          <div className="flex gap-6 p-4 bg-[#ECEDF0]">
+          <div className="flex gap-6 p-4 bg-[#ECEDF0] rounded-2xl">
             <div className="bg-yellow-300 w-[100px] h-[100px] rounded-xl shadow-2xl"></div>
             <div className="flex flex-col gap-2 w-[354px]">
               <div>
@@ -70,7 +68,7 @@ export function BuyStepOne() {
               <Trash2Icon className="size-6" />
             </div>
           </div>
-          <div className="flex gap-6 p-4 bg-[#ECEDF0]">
+          <div className="flex gap-6 p-4 bg-[#ECEDF0] rounded-2xl">
             <div className="bg-yellow-300 w-[100px] h-[100px] rounded-xl shadow-2xl"></div>
             <div className="flex flex-col gap-2 w-[354px]">
               <div>

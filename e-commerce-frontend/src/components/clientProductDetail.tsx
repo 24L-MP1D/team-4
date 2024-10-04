@@ -9,7 +9,7 @@ import { Textarea } from "./ui/textarea";
 import { title } from "process";
 import { useFormik, FormikErrors } from "formik";
 interface FormValues {
-  title: string;
+  value: string;
 }
 const Products = [
   {
