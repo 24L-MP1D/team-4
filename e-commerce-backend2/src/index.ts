@@ -1,6 +1,12 @@
 // src/index.ts
+import { productDetail } from './model/productDetailschema';
+import express, { Request, Response, text } from 'express';
+import connectDB from "../config/db"
 import express, { Request, Response } from 'express';
 import { postProduct } from './model/postproductmodel';
+import { buyStep } from './model/buyStepModel';
+
+connectDB();
 
 import Multer, { memoryStorage } from "multer"
 import { handleUpload } from './config/cloudinary';
@@ -18,19 +24,41 @@ app.get('/', (req, res) => {
   res.send('Hello, TypeScript with Express123!');
 });
 
-app.post('/postProducts', async (req: Request, res: Response) => {
+// app.post('/productDetail', async (req:Request, res: Response) =>{
+//   try{
+//     const {title} = req.body;
+//     const productDetails = await productDetail.create({title})
+//     res.sendStatus(200);
+//   } catch(error){
+//     console.error(error);
+//     res.sendStatus(400);
+//   }
+// });
+
+// app.post('/postProducts', async (req: Request, res: Response) => {
+//   try {
+//     const { name, text, barCode } = req.body
+//     const postProducts = await postProduct.create({
+//       name: name,
+//       text: text,
+//       BarCode: barCode
+//     })
+//     console.log(postProducts)
+//     res.send(postProducts);
+//   } catch (error) {
+//     console.error(error)
+//     res.sendStatus(404)
+//   }
+// })
+
+app.post('/buyStepTwo', async (req: Request, res: Response) => {
   try {
-    const { name, text, barCode } = req.body
-    const postProducts = await postProduct.create({
-      name: name,
-      text: text,
-      BarCode: barCode
-    })
-    console.log(postProducts)
-    res.send(postProducts);
+    const { values } = req.body;
+    const buyStepTwo = await buyStep.create({ values })
+    res.sendStatus(200);
   } catch (error) {
     console.error(error)
-    res.sendStatus(404)
+    res.sendStatus(400);
   }
 })
 
@@ -54,3 +82,5 @@ app.post('/uploadfile', multer.array("image"), async (req: Request, res: Respons
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
+
+

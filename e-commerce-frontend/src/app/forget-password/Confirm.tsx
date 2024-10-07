@@ -34,7 +34,7 @@ export function Confirm({ submit }: { submit: () => void }) {
   });
 
   return (
-    <div className="flex flex-col items-center gap-5 py-20">
+    <div className="flex flex-col justify-center gap-5 py-20">
       <Image src={message} alt="message picture" />
       <h1 className="text-lg text-[#09090B] font-semibold">Баталгаажуулах</h1>
       <h2 className="text-nowrap text-[#18181B]">
