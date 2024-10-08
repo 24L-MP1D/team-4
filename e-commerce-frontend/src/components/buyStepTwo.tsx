@@ -3,7 +3,6 @@ import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Textarea } from "./ui/textarea";
 import { useFormik, FormikErrors } from "formik";
-import { BuyStepOne } from "./buyStepOne";
 
 interface FormValues {
   firstName: string;
@@ -12,7 +11,6 @@ interface FormValues {
   homeAddress: string;
   nemeltMedeelel: string;
 }
-
 export function BuySteoTwo() {
   const formik = useFormik({
     initialValues: {
