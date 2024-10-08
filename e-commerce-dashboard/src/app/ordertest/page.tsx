@@ -1,23 +1,35 @@
+"use client"
 import { Car, ChevronDown, ChevronLeft } from "lucide-react";
-import React from "react";
-import shoes from "../../../../../public/shoes.png";
-import shirt from "../../../../../public/shirt.png";
+import React, { useEffect, useState } from "react";
+import shoes from "/public/shoes.png";
+import shirt from "/public/shirt.png";
 import Image from "next/image";
 
-const OrderDetailPage = ({
-  params: { slug },
-}: {
-  params: { slug: string };
-}) => {
+
+
+export default function OrderDetailPage() {
+  type Datatype = [
+    firstName: string,
+    lastName: string,
+    phoneNumber: string,
+    homeAddress: string,
+    nemeltMedeelel: string
+  ]
+  const [data, setData] = useState([])
+  console.log(data)
+  const buyStep = () => {
+    fetch(`http://localhost:4000/buyStepTwo`).then((res) => res.json()).then((data) => setData(data))
+  }
+  useEffect(() => { buyStep() }, [])
   return (
     <div className="grid">
-      <button className="flex gap-4 w-full bg-white h-[50px] p-3">
+      <div className="flex gap-4 w-full bg-white h-[50px] p-3">
         {" "}
         <button>
           <ChevronLeft size={20} strokeWidth={2.75} />
         </button>
         <div className="text-sm text-[#121316]">Захиалгын дэлгэрэнгүй</div>
-      </button>
+      </div>
       <div className="flex p-5 gap-6">
         <div className="p-5 bg-white rounded-xl w-full grid gap-6">
           <div className="flex justify-between">
@@ -98,10 +110,12 @@ const OrderDetailPage = ({
             </div>
             <div className="w-full bg-gray-300 border-[1px]"></div>
             <div className="text-[#3F4145] text-sm mt-[24px]">Гэр</div>
-            <div className="text-[#121316] text-sm font-semibold">
-              Улаанбаатар, Сонгинохайрхан дүүрэг, 1-р хороо, 14r bair 8r orts 6r
-              darvar
-            </div>
+            {data.map((dat) =>
+              <div className="text-[#121316] text-sm font-semibold">
+                { }
+              </div>
+            )}
+
           </div>
           <div className="p-5 bg-white rounded-xl w-full mt-[25px]">
             <div className="text-[#121316] text-sm py-4">
@@ -142,4 +156,3 @@ const OrderDetailPage = ({
   );
 };
 
-export default OrderDetailPage;

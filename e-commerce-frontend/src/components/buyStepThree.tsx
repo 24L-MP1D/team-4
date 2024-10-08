@@ -82,7 +82,7 @@ export function BuyStepThree() {
                         <span className="text-base font-normal">Төлөх боломжтой банкууд:</span>
                         <div className="grid grid-cols-7 gap-6">
                             {bankIcons.map((bank) => (
-                                <div key={bank.name} className="">
+                                <div key={bank.name}>
                                     <Image src={bank.imagePath} width={46.88} height={46.88} alt="Bank Icon" />
                                 </div>
                             ))}
