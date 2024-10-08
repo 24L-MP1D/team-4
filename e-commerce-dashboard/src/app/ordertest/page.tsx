@@ -1,11 +1,9 @@
-"use client"
+"use client";
 import { Car, ChevronDown, ChevronLeft } from "lucide-react";
 import React, { useEffect, useState } from "react";
-import shoes from "/public/shoes.png";
-import shirt from "/public/shirt.png";
+import  shoes  from "../../../public/shoes.png";
+import  shirt  from "../../../public/shirt.png";
 import Image from "next/image";
-
-
 
 export default function OrderDetailPage() {
   type Datatype = [
@@ -14,13 +12,17 @@ export default function OrderDetailPage() {
     phoneNumber: string,
     homeAddress: string,
     nemeltMedeelel: string
-  ]
-  const [data, setData] = useState([])
-  console.log(data)
+  ];
+  const [data, setData] = useState([]);
+  console.log(data);
   const buyStep = () => {
-    fetch(`http://localhost:4000/buyStepTwo`).then((res) => res.json()).then((data) => setData(data))
-  }
-  useEffect(() => { buyStep() }, [])
+    fetch(`http://localhost:4000/buyStepTwo`)
+      .then((res) => res.json())
+      .then((data) => setData(data));
+  };
+  useEffect(() => {
+    buyStep();
+  }, []);
   return (
     <div className="grid">
       <div className="flex gap-4 w-full bg-white h-[50px] p-3">
@@ -110,12 +112,9 @@ export default function OrderDetailPage() {
             </div>
             <div className="w-full bg-gray-300 border-[1px]"></div>
             <div className="text-[#3F4145] text-sm mt-[24px]">Гэр</div>
-            {data.map((dat) =>
-              <div className="text-[#121316] text-sm font-semibold">
-                { }
-              </div>
-            )}
-
+            {data.map((dat) => (
+              <div className="text-[#121316] text-sm font-semibold">{}</div>
+            ))}
           </div>
           <div className="p-5 bg-white rounded-xl w-full mt-[25px]">
             <div className="text-[#121316] text-sm py-4">
@@ -154,5 +153,4 @@ export default function OrderDetailPage() {
       </div>
     </div>
   );
-};
-
+}
