@@ -2,12 +2,14 @@
 import { Edit, Ellipsis, Heart, Star, Trash2 } from "lucide-react";
 import { Button } from "./ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "./ui/textarea";
-import { title } from "process";
+
 import { useFormik, FormikErrors } from "formik";
+import path from "path";
+import { usePathname } from "next/navigation";
 interface FormValues {
   value: string;
 }
@@ -51,26 +53,32 @@ const images = [
     imagePath: "/clientProductImage/image1178.png"
   },
 ]
-function Submit() {
-  fetch(`http://localhost:4000/productDetail`, {
-    method: "POST",
-    body: JSON.stringify({
-      title: title,
-    }),
-  }).then((res) => {
-    if (res.ok) {
-      // Success
-    } else {
-      // error
-    }
-  });
-}
+// function Submit() {
+//   fetch(`http://localhost:4000/productDetail`, {
+//     method: "POST",
+//     body: JSON.stringify({
+//       title: title,
+//     }),
+//   }).then((res) => {
+//     if (res.ok) {
+//       // Success
+//     } else {
+//       // error
+//     }
+//   });
+// }
 
 export function ProductDetail() {
+  type Datatype = [
+    title: string
+  ];
   const [visible, SetVisible] = useState(false);
   const [selected, SetSelected] = useState("");
   const [selectImagePath, SetSelectImagePath] = useState("/clientProductImage/image1175.png");
   const [number, SetNumber] = useState(1);
+  // const productDetailComment = () => {
+
+  // }
   const formik = useFormik({
     initialValues: { title: "" },
     onSubmit: (values) => {
@@ -80,27 +88,40 @@ export function ProductDetail() {
     validate: (values) => {
       const errors: FormikErrors<FormValues> = {};
       if (!values.title) {
-        errors.title = "title is required";
+        errors.value = "title is required";
       }
       return errors;
     },
   });
-  // console.log(formik.errors);
-  const nemeh = () =>{
+  const [data, setData] = useState([]);
+  const postProduct = () => {
+    fetch(`http://localhost:4000/postProducts`)
+      .then((res) => res.json())
+      .then((data) => setData(data));
+  };
+  useEffect(() => {
+    postProduct();
+  }, []);
+  const nemeh = () => {
     SetNumber(preNumber => (preNumber < 5 ? number + 1 : preNumber));
   }
-  const hasah = () =>{
+  const hasah = () => {
     SetNumber(preNumber => (preNumber > 1 ? number - 1 : preNumber));
   }
   return (
     <form onSubmit={formik.handleSubmit}>
-      < div className="max-w-[1040px] mx-auto items-center mt-[52px] flex flex-col gap-5" >
+      < div className="max-w-[1040px] mx-auto items-center mt-[52px] flex flex-col gap-5">
         <div className="flex gap-5">
           <div className="flex gap-5">
             <div className="w-[67px] flex flex-col gap-2 py-[100px]">
               {images.map((image) => (
                 <div className="w-[67px] h-[67px] hover:border-2 hover:border-primaryBlack hover:scale-125" key={image.name}>
                   <Image src={image.imagePath} width={67} height={67} alt="Jijig zurag" onClick={() => SetSelectImagePath(image.imagePath)} />
+                </div>
+              ))}
+              {data.map((product) => (
+                <div className="w-[67px] h-[67px] hover:border-2 hover:border-primaryBlack hover:scale-125" key={product._id}>
+                  <Image src={product.imageurl[0]} width={67} height={67} alt="Jijig zurag" onClick={() => SetSelectImagePath(image.imagePath)} />
                 </div>
               ))}
             </div>
@@ -119,8 +140,13 @@ export function ProductDetail() {
                 >
                   Шинэ
                 </Button>
-                <div className="text-2xl font-bold flex gap-2 items-center">
+                <div>
                   Wildflower Hoodie
+                  {/* {data.map((product) => (
+                    <div key={product._id} className="text-2xl font-bold flex gap-2 items-center">
+                      {product.name}
+                    </div>
+                  ))} */}
                   <Heart />
                 </div>
                 <p className="text-base font-normal">
@@ -191,11 +217,13 @@ export function ProductDetail() {
               <div className="flex justify-between">
                 <div className="flex gap-2">
                   <p className="text-sm font-medium">Saraa</p>
-                  <Star className="size-5 fill-yellow-400 text-yellow-400" />
-                  <Star className="size-5 fill-yellow-400 text-yellow-400" />
-                  <Star className="size-5 fill-yellow-400 text-yellow-400" />
-                  <Star className="size-5 fill-yellow-400 text-yellow-400" />
-                  <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                  <div className="flex">
+                    <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                    <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                    <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                    <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                    <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                  </div>
                 </div>
                 <Popover>
                   <PopoverTrigger asChild>
