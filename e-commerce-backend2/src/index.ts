@@ -1,9 +1,13 @@
 // src/index.ts
 import express, { Request, Response } from 'express';
 import { postProduct } from './model/postproductmodel';
-
 import Multer, { memoryStorage } from "multer"
 import { handleUpload } from './config/cloudinary';
+import connectDB from './config/db';
+import { userPart } from './model/userpart';
+
+connectDB()
+
 const storage = memoryStorage()
 const multer = Multer({ storage })
 
@@ -32,6 +36,27 @@ app.post('/postProducts', async (req: Request, res: Response) => {
     console.error(error)
     res.sendStatus(404)
   }
+})
+
+app.post('/userPart', async (req: Request, res: Response) => {
+  try {
+    const { firstName, lastName, phoneNumber, gmail, address } = req.body
+    console.log(req.body)
+    const userParts = await userPart.create({
+      firstName: firstName,
+      lastName: lastName,
+      phoneNumber: phoneNumber,
+      gmail: gmail,
+      address: address,
+    })
+    console.log(userParts)
+    res.send(userParts);
+  } catch (error) {
+    console.error(error)
+    res.sendStatus(404)
+  }
+  console.log();
+
 })
 
 app.post('/uploadfile', multer.array("image"), async (req: Request, res: Response
