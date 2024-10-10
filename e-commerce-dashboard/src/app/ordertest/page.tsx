@@ -37,7 +37,8 @@ export default function OrderDetailPage() {
           <div className="flex justify-between">
             <div>
               <div className="text-[#121316] text-sm">
-                Захиалгын ID дугаар:{" "}
+                Захиалгын ID дуг
+                аар:{" "}
               </div>
               <div className="text-[#121316] text-sm font-semibold">
                 #12345678

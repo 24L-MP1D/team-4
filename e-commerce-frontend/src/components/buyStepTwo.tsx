@@ -61,13 +61,6 @@ export function BuySteoTwo() {
   console.log(formik.values);
   return (
     <div className="flex flex-col justify-center gap-6 mt-10">
-      <div className="flex items-center pl-[500px]">
-        <Button variant="outline" className="rounded-full border w-9 h-9">1</Button>
-        <div className="border-x-[80px] border-solid border-[1px] border-primary"></div>
-        <Button variant="outline" className="rounded-full size-10">2</Button>
-        <div className="border-x-[80px] border-solid border-[1px] border-primary"></div>
-        <Button variant="outline" className="rounded-full size-10">3</Button>
-      </div>
       <div className="flex gap-5">
         <div className="w-[333px] py-6 px-6 flex flex-col gap-4 bg-slate-400 rounded-2xl mb-[230px]">
           <div className="flex gap-2 items-center">

@@ -63,13 +63,6 @@ const bankIcons = [
 export function BuyStepThree() {
     return (
         <div className=" flex flex-col items-center">
-            <div className="flex items-center pl">
-                <Button variant={"outline"} className="rounded-full size-10">1</Button>
-                <div className="border-x-[80px] border-solid border-[1px] border-primary"></div>
-                <Button variant={"outline"} className="rounded-full size-10">2</Button>
-                <div className="border-x-[80px] border-solid border-[1px] border-primary"></div>
-                <Button variant={"outline"} className="rounded-full size-10">3</Button>
-            </div>
             <div className="w-[687px] bg-slate-400 rounded-2xl flex flex-col gap-4 p-8">
                 <div className="flex flex-col gap-4 p-8">
                     <div className="text-lg font-semibold"> 3. Төлбөр төлөлт</div>
