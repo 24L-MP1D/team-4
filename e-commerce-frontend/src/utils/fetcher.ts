@@ -10,5 +10,7 @@ export function postFetch(path: string, jsonBody: {}) {
 
 
   export function getFetch(path: string) {
-     return fetch (`http://localhost:4000/${path}`)
+     return fetch (`http://localhost:4000/${path}`, {
+      
+     })
   }

@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import * as yup from "yup";
 import { ChangeEvent, useEffect, useState } from "react";
@@ -15,6 +15,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Textarea } from "./ui/textarea";
+import { Check } from "lucide-react";
 
 const validationSchema = yup.object({
   name: yup.string(),
@@ -22,16 +24,104 @@ const validationSchema = yup.object({
 });
 
 export function ProductUpload() {
+
+  const [category, setCategory] =useState ("")
+  const [subcategory, setSubcategory] =useState ("")
+  const [image, setImage] = useState<FileList | null>(null)
+  const [addtypes, setAddtypes] = useState(false)
+  const [alltypes, setAlltypes] = useState<string[]>(["Өнгө","Размер"])
+  const [subtypes, setSubtypes] = useState(false)
+  const [imageurl, setImageurl] = useState([])
+  console.log(imageurl)
+  const [allsize, setSize] = useState("")
+  const [checkedColor, setCheckedcolor] = useState("")
+  console.log(allsize)
   const initialValues = {
     name: "",
     information: "",
-    barCode: "",
-    value: "",
-    quantity: "",
-    category: "",
-    subCategory: "",
+    barCode: yup.number,
+    imageurl:imageurl,
+    price: yup.number,
+    leftquantity: yup.number,
+    Өнгө:"",
+    Размер:"",
+    type:"",
     addTag: "",
   };
+
+  const categories = [
+    {name: "Эрэгтэй",
+     value: "male"
+    },
+    {name: "Эмэгтэй",
+    value: "female"
+    }
+  ]
+
+  const subcategories = [
+    {name: "Хүрэм",
+    value: "coat"
+    },
+    {name: "Хантааз",
+    value: "jacket"
+    },
+    {name: "Цамц",
+    value: "shirt"
+    },
+    {name: "Өмд",
+    value: "trousers"
+    },
+    {name: "Даашинз",
+    value: "dress"
+    },
+  ]
+
+  const colors = [
+    {colorname: "улаан",
+      value: "#FF0000",
+      
+    },
+    {colorname: "ногоон",
+      value: "#00ff00"
+    },
+    {colorname: "нил ягаан",
+      value: "#A020F0"
+    },
+    {colorname: "бор",
+      value: "#964B00"
+    },
+    {colorname: "цагаан",
+      value: "#FFFFFF"
+    },
+    {colorname: "улбар шар",
+      value: "#FFA500"
+    },
+    {colorname: "цэнхэр",
+      value: "#0000FF"
+    },
+    {colorname: "ягаан",
+      value: "#FFC0CB"
+    },
+    {colorname: "саарал",
+      value: "#808080"
+    },
+    {colorname: "шар",
+      value: "#FFFF00"
+    },
+    {colorname: "хар",
+      value: "#000000"
+    },
+  ]
+
+  const sizes = [
+    {sizename: "Free"},
+    {sizename: "S"},
+    {sizename: "M"},
+    {sizename: "L"},
+    {sizename: "XL"},
+    {sizename: "2XL"},
+    {sizename: "3XL"}
+  ]
 
   function postProduct() {
     fetch(`http://localhost:4000/postProducts`, {
@@ -39,51 +129,46 @@ export function ProductUpload() {
       body: JSON.stringify({
         name: formik.values.name,
         information: formik.values.information,
-        BarCode: formik.values.barCode,
-        quantity: formik.values.quantity,
+        barCode: randomnumber,
+        price: formik.values.price,
+        imageurl:imageurl,
+        leftquantity: formik.values.leftquantity,
+        category:category,
+        color:allcolors,
+        size: allsizes,
+        subcategory:subcategory,
         addTag: formik.values.addTag,
       }),
       headers: { "Content-type": "application/json; charset=UTF-8" },
     });
   }
-
-  const [image, setImage] = useState<FileList | null>(null)
+  
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const files = event?.currentTarget.files;
-    console.log(files);
     if (files) setImage(files)
   };
   const arrayofimmages = Array.from(image ?? [])
   const setUrl: string[] = []
 
-
   arrayofimmages.forEach((img) => {
     const url = URL.createObjectURL(img)
     setUrl.push(url)
   })
-  console.log(setUrl);
 
   function uploadFile() {
     if (!image) return;
     const formData = new FormData();
-    Array.from(image ?? []).forEach((file) => formData.append("image", file, file.name))
-
+    Array.from (image ?? []).forEach((file:File) =>  formData.append("image",file, file.name))
     fetch(`http://localhost:4000/uploadfile`, {
       method: "POST",
       body: formData,
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
-  }
-  console.log(image);
-
-  function uploadImage(event: ChangeEvent<HTMLInputElement>) {
-    handleFileChange(event);
+      .then((data) => setImageurl(data));
   }
 
   const onSubmit = (values: any, actions: any) => {
-    console.log({ values, actions });
     uploadFile()
     actions.setSubmitting(false);
     postProduct();
@@ -94,11 +179,31 @@ export function ProductUpload() {
     onSubmit,
     validationSchema,
   });
+  
+  function addtype() {
+   setAlltypes(type=> [...type,formik.values.type])
+  }
 
-  useEffect(() => {
-    console.log(formik.values.category);
-  }, [formik.values.category]);
+  function addsubtypes () {
+    setSubtypes(true)
+  }
+  console.log (formik.values.addTag)
 
+  const randomnumber = Math.floor(Math.random()*899999)+100000
+
+  const [allcolors, setAllcolors] = useState<string[]>([])
+  const [allsizes, setAllsizes] = useState<string[]>([])
+  console.log(allcolors)
+  console.log(allsizes)
+
+  function pushtocolorarray() {
+    setAllcolors(color=>[...color,checkedColor])
+  }
+  
+
+  function pushtosizearray() {
+    setAllsizes(size => [...size, allsize])
+  }
   return (
     <div className="w-full flex flex-col gap-6 bg-primaryGray">
       <Formik
@@ -112,27 +217,32 @@ export function ProductUpload() {
               <div className="bg-white flex flex-col gap-4 p-6 rounded-xl">
                 <div className="flex flex-col gap-2 text-sm font-semibold">
                   Бүтээгдэхүүний нэр
-                  <Field
+                  <Input
                     placeholder="Нэр"
                     className="bg-[#D6D8DB] rounded-lg p-2 border-solid border border-black"
                     name="name"
+                    id="name"
+                    onChange={formik.handleChange}
                   />
                 </div>
                 <div className="flex flex-col gap-2 text-sm font-semibold">
                   Нэмэлт мэдээлэл
-                  <Field
+                  <Textarea
                     placeholder="Гол онцлог, давуу тал, техникийн үзүүлэлтүүдийг онцолсон дэлгэрэнгүй, сонирхолтой тайлбар."
                     className="max-w-lg rounded-lg bg-[#D6D8DB] p-2 border-solid border border-black"
                     name="information"
-                    component="textarea"
+                    id="information"
+                    onChange={formik.handleChange}
                   />
                 </div>
                 <div className="flex flex-col gap-2 text-sm font-semibold">
                   Барааны код
-                  <Field
-                    placeholder="#123456"
+                  <Input
+                    placeholder={String(randomnumber)}
                     className="bg-[#D6D8DB] rounded-lg p-2 border-solid border border-black"
                     name="barCode"
+                    type="number"
+                    readOnly
                   />
                 </div>
               </div>
@@ -154,6 +264,7 @@ export function ProductUpload() {
                           multiple
                           type="file"
                           className="opacity-0"
+                          id="barcode"
                           onChange={handleFileChange}
                         />
                       </div>
@@ -164,18 +275,22 @@ export function ProductUpload() {
               <div className="grid grid-cols-2 gap-4 p-6 bg-white rounded-xl">
                 <div className="flex flex-col gap-2 text-base font-semibold">
                   Үндсэн үнэ
-                  <Field
+                  <Input
                     placeholder="Үндсэн үнэ"
                     className="bg-[#D6D8DB] rounded-lg p-2 border-solid border border-black"
-                    name="value"
+                    name="price"
+                    id="price"
+                    onChange={formik.handleChange}
                   />
                 </div>
                 <div className="flex flex-col gap-2 text-base font-semibold">
                   Үлдэгдэл тоо ширхэг
-                  <Field
+                  <Input
                     placeholder="Үлдэгдэл тоо ширхэг"
                     className="bg-[#D6D8DB] rounded-lg p-2 border-solid border border-black"
-                    name="quantity"
+                    name="leftquantity"
+                    id="leftquantity"
+                    onChange={formik.handleChange}
                   />
                 </div>
               </div>
@@ -184,78 +299,79 @@ export function ProductUpload() {
               <div className="w-full bg-white p-6 rounded-lg flex flex-col gap-4">
                 <div>
                   <p className="text-base font-semibold">Ерөнхий ангилал</p>
-                  <Field
-                    name="category"
-                    render={({ field }) => (
                       <Select
-                        value={field?.value}
-                        defaultValue={field.value}
-                        onValueChange={(newValue) => field.onChange(newValue)}
+                        onValueChange={setCategory}
                       >
                         <SelectTrigger className="w-full bg-[#D6D8DB] border-solid border border-black">
                           <SelectValue placeholder="Сонгох" className="" />
                         </SelectTrigger>
                         <SelectContent>
                           <SelectGroup>
-                            <SelectItem value="Эмэгтэй">Эмэгтэй</SelectItem>
-                            <SelectItem value="Эpэгтэй">Эpэгтэй</SelectItem>
+                            {categories.map ((category) => 
+                               <SelectItem value={category.value}>{category.name}</SelectItem>
+                            )}
                           </SelectGroup>
                         </SelectContent>
                       </Select>
-                    )}
-                  />
+                    
                 </div>
-                <Select name="subCategory">
+                <Select name="subCategory" onValueChange={setSubcategory}>
                   <p className="text-base font-semibold">Дэд ангилал</p>
                   <SelectTrigger className="w-full bg-[#D6D8DB] border-solid border border-black">
                     <SelectValue placeholder="Сонгох" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectGroup>
-                      <SelectItem value="цүнх">цүнх</SelectItem>
-                      <SelectItem value="гутал">гутал</SelectItem>
-                      <SelectItem value="цамц">цамц</SelectItem>
-                      <SelectItem value="цаг">цаг</SelectItem>
+                      {subcategories.map ((subcategory) =>
+                        <SelectItem value={subcategory.value}>{subcategory.name}</SelectItem>
+                      )}
                     </SelectGroup>
                   </SelectContent>
                 </Select>
               </div>
               <div className="bg-white p-6 flex flex-col gap-6 rounded-lg">
                 <p className="text-lg font-semibold">Төрөл</p>
-                <div className="flex gap-6 items-center">
-                  <p>Өнгө</p>
-                  <Button
-                    type="button"
-                    variant="secondary"
-                    className="rounded-full w-[32px] h-[32px]"
-                  >
-                    +
-                  </Button>
+                 <div className="flex gap-6 items-center">
+                    <p>Өнгө</p>
+                    <div className="flex gap-1">
+                      {colors.map ((color) => 
+                        <button type="button" onClick={() => setCheckedcolor(color.colorname)} className={`rounded-full border h-6 w-6`} style={{backgroundColor:color.value}}><Check size={16} strokeWidth={1.5} className={`${checkedColor === color.colorname? "block":"hidden"}`}/></button>
+                      )}
+                    </div>
+                    <Button
+                      type="button"
+                      variant="secondary"
+                      className="rounded-full w-[32px] h-[32px]"
+                      onClick={()=>pushtocolorarray()}
+                    >
+                      +
+                    </Button>
                 </div>
                 <div className="flex gap-6 items-center">
-                  <p>Хэмжээ</p>
-                  <Button
-                    type="button"
-                    variant="secondary"
-                    className="rounded-full w-[32px] h-[32px]"
-                  >
-                    +
-                  </Button>
+                    <p>Хэмжээ</p>
+                    <div className="flex gap-1">
+                      {sizes.map ((size) => 
+                      <div className={`rounded-full border p-4 text-center text-sm hover:cursor-pointer`} style={size.sizename===allsize?{backgroundColor:"#808080"}:{color:""}} onClick={()=> setSize(size.sizename)}>{size.sizename}</div>
+                      )}
+                    </div>
+                    <Button
+                      type="button"
+                      variant="secondary"
+                      className="rounded-full w-[32px] h-[32px]"
+                      onClick={() => pushtosizearray()}
+                    >
+                      +
+                    </Button>
                 </div>
-                <Button
-                  variant="outline"
-                  type="button"
-                  className="rounded-xl max-w-[118px] shadow-lg"
-                >
-                  <p className="text-sm font-semibold px-4 py-2">Төрөл нэмэх</p>
-                </Button>
               </div>
               <div className="bg-white p-6 flex flex-col gap-2 rounded-lg">
                 <p className="text-base font-semibold">Таг</p>
-                <Field
+                <Input
                   placeholder="Таг нэмэх..."
                   className="bg-[#D6D8DB] rounded-lg p-2 border-solid border border-black"
                   name="addTag"
+                  id="addTag"
+                  onChange={formik.handleChange}
                 />
                 <p className="text-sm font-normal text-[#5E6166] mb-9">
                   Санал болгох: Гутал , Цүнх , Эмэгтэй{" "}
@@ -265,13 +381,14 @@ export function ProductUpload() {
           </div>
           <div className="flex gap-6 justify-end px-10 mb-28">
             <Button variant={"outline"} className="p-6 shadow-lg" type="button">
-              <p className="text-base font-semibold">Ноорог</p>
+                <p className="text-base font-semibold">Ноорог</p>
             </Button>
             <Button type="submit" className="p-6 shadow-lg" >
               <p className="text-base font-semibold">Нийтлэх</p>
             </Button>
           </div>
         </Form>
+       
       </Formik>
     </div >
   );
