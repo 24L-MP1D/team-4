@@ -1,5 +1,4 @@
 "use client"
-
 import { BuyStepThree } from "@/components/buyStepThree";
 import { BuySteoTwo } from "@/components/buyStepTwo";
 import { ClientHeader } from "@/components/headerClient";
