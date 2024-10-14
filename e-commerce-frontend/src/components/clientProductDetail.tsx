@@ -8,12 +8,8 @@ import { Separator } from "@/components/ui/separator";
 import { Textarea } from "./ui/textarea";
 import { useSearchParams } from 'next/navigation'
 import { useFormik, FormikErrors } from "formik";
-<<<<<<< HEAD
 import { fetcherwithtoken } from "@/utils/fetcherget";
 import { Productdetail } from "./usercard";
-=======
-import { Header } from "./header";
->>>>>>> 229ed5c (Update clientProduct)
 
 interface FormValues {
   value: string;
@@ -92,15 +88,11 @@ export function ProductDetail({id}:{id:string}) {
        numberofproducts:number
   }
   
-  
-  
-  
   const [basketprods, setBasketprods] = useState<Basketproduct[]>([])
 
   function addtobasket (_id:string,  price:number, name:string, imageurl:string) {
     const getbasketproducts = localStorage.getItem(`basketproducts`)
   const parsedbaskedproducts = JSON.parse(String(getbasketproducts))
-
     const basket = 
       {_id:_id,
        price:price,
@@ -108,19 +100,11 @@ export function ProductDetail({id}:{id:string}) {
        imageurl:imageurl,
        numberofproducts:number
       }
-
       setBasketprods( [parsedbaskedproducts,basket])
       console.log(parsedbaskedproducts)
-
-    // setBasketprods ((prods)=> [...prods, basket])
-
-    
+    // setBasketprods ((prods)=> [...prods, basket]
     localStorage.setItem(`basketproducts`,JSON.stringify(basketprods))
-
   }
-
-
-
   return (
     <form onSubmit={formik.handleSubmit}>
       {oneProduct.map((oneProd) => (
@@ -180,9 +164,9 @@ export function ProductDetail({id}:{id:string}) {
               <div className="flex flex-col gap-2">
                 <p className="text-sm font-normal">Хэмжээний заавар</p>
                 <div className="flex gap-1">
-                  {Products.map((product) => (
-                    <Button type="button"  key={product.size} variant="ghost" className={`rounded-full  border text-xs w-8 h-8 text-black ${selected===product.size? "bg-primaryBlack text-white hover:bg-primaryBlack hover:text-white" : ""}`} onClick={() => setSelected(product.size)} disabled={!oneProd.size.includes(product.size)} >
-                      {product.size}
+                  {oneProd.map((oneProd) => (
+                    <Button type="button"  key={oneProd.size} variant="ghost" className={`rounded-full  border text-xs w-8 h-8 text-black ${selected===oneProd.size? "bg-primaryBlack text-white hover:bg-primaryBlack hover:text-white" : ""}`} onClick={() => setSelected(oneProd.size)} disabled={!oneProd.size.includes(oneProd.size)} >
+                      {oneProd.size}
                     </Button>
                   ))}
                 </div>
