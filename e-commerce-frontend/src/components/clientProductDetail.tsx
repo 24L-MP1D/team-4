@@ -8,8 +8,12 @@ import { Separator } from "@/components/ui/separator";
 import { Textarea } from "./ui/textarea";
 import { useSearchParams } from 'next/navigation'
 import { useFormik, FormikErrors } from "formik";
+<<<<<<< HEAD
 import { fetcherwithtoken } from "@/utils/fetcherget";
 import { Productdetail } from "./usercard";
+=======
+import { Header } from "./header";
+>>>>>>> 229ed5c (Update clientProduct)
 
 interface FormValues {
   value: string;
