@@ -47,7 +47,7 @@ export function ProductDetail() {
   const [visible, SetVisible] = useState(false);
   const [data, setData] = useState<Products[]>([]);
   const [selected, SetSelected] = useState("");
-  const [selectImagePath, SetSelectImagePath] = useState([0]);
+  const [selectImagePath, SetSelectImagePath] = useState("");
   const [number, SetNumber] = useState(1);
 
   const postProduct = () => {
@@ -69,66 +69,74 @@ export function ProductDetail() {
       < div className="max-w-[1040px] mx-auto items-center mt-[52px] flex flex-col gap-5 mb-[100px]">
         <div>
           {data.map((product) => (
-            <div className="flex gap-5" key={product._id}>
-              <div className="flex gap-5">
-                <div className="w-[67px] flex flex-col gap-2 py-[100px]">
-                  <div className="hover:border-2 hover:border-primaryBlack hover:scale-125">
+          <div className="flex gap-5" key={product._id}>
+            <div className="flex gap-5">
+              <div className="w-[67px] flex flex-col gap-2 py-[100px]">
+                <div className="hover:border-2 hover:border-primaryBlack hover:scale-125">
                     <Image src={product.imageurl[0]} width={67} height={67} alt="жижиг зураг" onClick={() => SetSelectImagePath(product.imageurl[0])} />
                   </div>
-                </div>
+                {/* {data.map((product) => (
+                  <div key={product._id}>
+                    <Image src={product.imageurl[0]} width={67} height={67} alt="jijig zurag" onClick={() => SetSelectImagePath(product.imageurl[0])} />
+                  </div>
+                ))} */}
+              </div>
+              <div className="w-[422px] h-[521px]">
                 <Image
                   src={selectImagePath} width={422} height={511}
                   alt=""
                   className="rounded-2xl shadow-2xl"
                 />
               </div>
-              <div className="w-[509px] py-[100px] flex-1 flex flex-col gap-4">
-                <div className="w-[418px]">
-                  <div className="flex flex-col gap-2">
-                    <Button variant={"outline"} className="w-14 py-1 px-3 rounded-full">
-                      Шинэ
-                    </Button>
-                    <div className="flex gap-2 items-center text-2xl font-bold">
-                      {product.name}
-                      <Heart />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="text-base font-normal">
-                      {product.information}
-                    </div>
+
+            </div>
+            <div className="w-[509px] py-[100px] flex-1 flex flex-col gap-4">
+              <div className="w-[418px]">
+                <div className="flex flex-col gap-2">
+                  <Button variant={"outline"} className="w-14 py-1 px-3 rounded-full">
+                    Шинэ
+                  </Button>
+                  <div className="flex gap-2 items-center text-2xl font-bold">
+                    {product.name}
+                    <Heart />
                   </div>
                 </div>
-                <div className="flex flex-col gap-5">
-                  <div className="flex flex-col gap-2">
-                    <p className="text-sm font-normal">Хэмжээний заавар</p>
-                    <div className="flex gap-2">
-                      {data.map((product) => (
-                        <button key={product._id} className={`rounded-full border text-xs w-10 h-10 text-black ${product.size === selected ? "bg-primaryBlack text-white" : ""}`} onClick={() => SetSelected(product.size)}>
-                          {product.size}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="flex gap-1 items-center">
-                    <Button variant={"outline"} className="rounded-full text-2xl size-10" type="button" onClick={hasah}>-</Button>
-                    <div className="w-8 h-8 items-center flex justify-center">{number}</div>
-                    <Button variant={"outline"} className="rounded-full text-2xl size-10" type="button" onClick={nemeh}>+</Button>
-                  </div>
-                </div>
-                <div className="flex flex-col gap-10 w-[509px]">
-                  <div className="flex flex-col gap-4 w-[175px]">
-                    <div className="text-xl font-bold">
-                      {product.price}
-                    </div>
-                    <Button variant={"destructive"} type="button" className="bg-primaryBlue px-9 py-2 rounded-[20px] text-sm font-medium hover:bg-primaryBlue">
-                      Сагсанд нэмэх
-                    </Button>
+                <div>
+                  <div className="text-base font-normal">
+                    {product.information}
                   </div>
                 </div>
               </div>
+              <div className="flex flex-col gap-5">
+                <div className="flex flex-col gap-2">
+                  <p className="text-sm font-normal">Хэмжээний заавар</p>
+                  <div className="flex gap-2">
+                    {data.map((product) => (
+                      <button key={product._id} className={`rounded-full border text-xs w-10 h-10 text-black ${product.size === selected ? "bg-primaryBlack text-white" : ""}`} onClick={() => SetSelected(product.size)}>
+                        {product.size}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div className="flex gap-1 items-center">
+                  <Button variant={"outline"} className="rounded-full text-2xl size-10" type="button" onClick={hasah}>-</Button>
+                  <div className="w-8 h-8 items-center flex justify-center">{number}</div>
+                  <Button variant={"outline"} className="rounded-full text-2xl size-10" type="button" onClick={nemeh}>+</Button>
+                </div>
+              </div>
+              <div className="flex flex-col gap-10 w-[509px]">
+                <div className="flex flex-col gap-4 w-[175px]">
+                  <div className="text-xl font-bold">
+                    {product.price}
+                  </div>
+                  <Button variant={"destructive"} type="button" className="bg-primaryBlue px-9 py-2 rounded-[20px] text-sm font-medium hover:bg-primaryBlue">
+                    Сагсанд нэмэх
+                  </Button>
+                </div>
+              </div>
             </div>
-          ))}
+          </div>
+           ))} 
           <div>
             <div className="flex flex-col gap-2 w-[509px] ml-[530px]">
               <div>
