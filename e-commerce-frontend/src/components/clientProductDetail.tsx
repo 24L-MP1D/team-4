@@ -1,5 +1,9 @@
 "use client";
+<<<<<<< HEAD
 import { Edit, Ellipsis, Heart, Star, Trash2 } from "lucide-react";
+=======
+import { BluetoothConnectedIcon, Edit, Ellipsis, Heart, Key, Star, Trash2 } from "lucide-react";
+>>>>>>> 700884f (Button map)
 import { Button } from "./ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { useEffect, useState } from "react";
@@ -8,8 +12,13 @@ import { Separator } from "@/components/ui/separator";
 import { Textarea } from "./ui/textarea";
 import { useSearchParams } from 'next/navigation'
 import { useFormik, FormikErrors } from "formik";
+<<<<<<< HEAD
 import { fetcherwithtoken } from "@/utils/fetcherget";
 import { Productdetail } from "./usercard";
+=======
+import { Header } from "./header";
+import { tree } from "next/dist/build/templates/app-page";
+>>>>>>> 700884f (Button map)
 
 interface FormValues {
   value: string;
@@ -17,6 +26,7 @@ interface FormValues {
 export function ProductDetail({id}:{id:string}) {
   const [oneProduct, setOneproduct]= useState<Productdetail[]>([])
 
+<<<<<<< HEAD
   function getoneproduct () {
     fetcherwithtoken(`products${id}`).then((res)=> res.json()).then((data)=> setOneproduct(data))
   }
@@ -33,6 +43,45 @@ export function ProductDetail({id}:{id:string}) {
   // const productDetailComment = () => {
 
   // }
+=======
+const buttons = [
+  {
+    name: "S",
+  },
+  {
+    name: "M"
+  },
+  {
+    name: "L"
+  },
+  {
+    name: "XL"
+  },
+  {
+    name: "2XL"
+  }
+]
+function Submit() {
+  fetch(`http://localhost:4000/productDetail`, {
+    method: "POST",
+    body: JSON.stringify({
+      title: title,
+    }),
+  }).then((res) => {
+    if (res.ok) {
+      // Success
+    } else {
+      // error
+    }
+  });
+}
+
+
+
+export function ProductDetail({ open }: { open: boolean }) {
+  const [visible, SetVisible] = useState(false);
+  const [selected, SetSelected] = useState("");
+>>>>>>> 700884f (Button map)
   const formik = useFormik({
     initialValues: { title: "" },
     onSubmit: (values) => {
@@ -137,8 +186,67 @@ export function ProductDetail({id}:{id:string}) {
               className="rounded-2xl shadow-2xl "
             />
           </div>
+<<<<<<< HEAD
           <div className="w-[509px] py-[100px] flex-1 flex flex-col gap-4">
             <div className="w-[418px]">
+=======
+          <Image
+            src={image1174}
+            alt=""
+            className="rounded-2xl shadow-2xl w-[509px] h-[521px]"
+          />
+        </div>
+        <div className="w-[509px] py-[100px] flex-1 flex-col gap-4">
+          <div className="w-[418px]">
+            <div className="flex flex-col gap-2">
+              <Button
+                variant={"outline"}
+                className="w-14 py-1 px-3 rounded-full"
+              >
+                Шинэ
+              </Button>
+              <div className="text-2xl font-bold flex gap-2 items-center">
+                Wildflower Hoodie
+                <Heart />
+              </div>
+              <p className="text-base font-normal">
+                Зэрлэг цэцгийн зурагтай даавуун материалтай цамц
+              </p>
+            </div>
+          </div>
+          <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-2">
+              <p className="text-sm font-normal">Хэмжээний заавар</p>
+              <div className="flex gap-1">
+                {buttons.map((button) => (
+                  <Button variant={"outline"} className={`rounded-full text-xs w-8 h-8 text-black ${button.name === selected ? "bg-primaryBlack text-white" : ""}`} onClick={() => SetSelected(button.name)}>
+                    {button.name}
+                  </Button>
+                ))}
+              </div>
+            </div>
+            <div className="flex gap-1 items-center">
+              <Button variant={"outline"} className="rounded-full text-2xl" type="button">
+                -
+              </Button>
+              <div className="w-8 h-8 items-center flex justify-center">1</div>
+              <Button variant={"outline"} className="rounded-full text-2xl" type="button">
+                +
+              </Button>
+            </div>
+          </div>
+          <div className="flex flex-col gap-10 w-[509px]">
+            <div className="flex flex-col gap-2 w-[175px]">
+              <p className="text-xl font-bold">120’000₮</p>
+              <Button
+                variant={"destructive"} type="button"
+                className="bg-primaryBlue px-9 py-2 rounded-[20px] text-sm font-medium hover:bg-primaryBlue"
+              >
+                Сагсанд нэмэх
+              </Button>
+            </div>
+            <Popover open={open}>
+>>>>>>> 700884f (Button map)
               <div className="flex flex-col gap-2">
                 <Button
                   variant={"outline"}
@@ -171,6 +279,7 @@ export function ProductDetail({id}:{id:string}) {
                   ))}
                 </div>
               </div>
+<<<<<<< HEAD
               <div className="flex gap-1 items-center">
                 <Button variant={"outline"} className="rounded-full text-2xl" type="button" onClick={()=> hasah(oneProd.leftquantity)}>
                   -
@@ -205,6 +314,59 @@ export function ProductDetail({id}:{id:string}) {
                         бүгдийг харах
                       </button>
                     </div>
+=======
+              <PopoverContent className="w-full p-3">
+                <TableBody className="flex flex-col gap-6">
+                  <ScrollArea className="w-[300px] rounded-md border">
+                    <div className="flex flex-col">
+                      <TableCell>
+                        <div className="flex justify-between">
+                          <div className="flex gap-2">
+                            <p className="text-sm font-medium">Saraa</p>
+                            <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                            <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                            <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                            <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                            <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                          </div>
+                          <Popover>
+                            <PopoverTrigger asChild>
+                              <Ellipsis />
+                            </PopoverTrigger>
+                            <PopoverContent className="flex gap-3 w-[100px]">
+                              <Edit className="text-blue-500" />
+                              <Trash2 className="text-red-500" />
+                            </PopoverContent>
+                          </Popover>
+                        </div>
+                        <div className="text-nowrap">
+                          Ваав материал ёстой гоё байна 😍
+                        </div>
+                        <Separator className="my-2" />
+                      </TableCell>
+                    </div>
+                  </ScrollArea>
+                  <div className="bg-[#F4F4F5] flex flex-col gap-6 p-6">
+                    <div className="flex flex-col gap-2">
+                      <p className="text-sm font-medium">Одоор үнэлэх:</p>
+                      <div className="flex">
+                        <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                        <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                        <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                        <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                        <Star className="size-5 fill-yellow-400 text-yellow-400" />
+                      </div>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <p className="text-sm font-medium">Сэтгэгдэл үлдээх:</p>
+                      <Textarea placeholder="Энд бичнэ үү..." id="title"
+                        value={formik.values.title} onChange={formik.handleChange}
+                      />{formik.errors.title}
+                    </div>
+                    <Button className="bg-primaryBlue rounded-3xl w-32 font-semibold py-2 px-9 hover:bg-blue-800" type="submit" onClick={() => formik.handleSubmit}>
+                      Үнэлэх
+                    </Button>
+>>>>>>> 700884f (Button map)
                   </div>
                   <div className="flex">
                     <Star className="size-5 fill-yellow-400 text-yellow-400" />
